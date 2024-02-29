@@ -1,0 +1,7 @@
+mysql -h 127.0.0.1 -u root -p   //MySQL veritabanı sunucusuna kullanıcı bağlamayı sağlar. IP adresi local host, -u root kullanıcı adı, -p ise şifre için.
+show databases;                 //databaseleri gösterir
+use todo_list;                  //hangi databse üstünde çalışacağını seçmek için
+show tables;                    //database içindeki tabloları gösterir
+describe todos;                 //todos tablosunun şemasını gösterir
+select * from todos;            //todos tablosunun içindeki değerleri gösterir
+

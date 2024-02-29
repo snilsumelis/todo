@@ -1,0 +1,49 @@
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Todo List</title>
+    </head>
+    <body>
+    <h1>Todo List</h1>
+    <ul>
+        <% todos.forEach((todo) => { %>
+            <li>
+                <%= todo['text'] %>
+                <form method="POST" action="/todos/<%= todo['id'] %>?_method=DELETE" id="deleteForm">
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        <% }); %>
+    </ul>
+    <form method="POST">
+        <label for="todo">New Todo:</label>
+        <input type="text" id="todo" name="todo" required>
+        <button type="submit">Add Todo</button>
+    </form>
+    <script>
+        const forms = document.querySelectorAll('#deleteForm');
+        forms.forEach(form => {
+            form.addEventListener('submit', function(event) {
+                event.preventDefault();
+                const confirmDelete = confirm('Are you sure you want to delete this todo?');
+                if (confirmDelete) {
+                    const id = this.getAttribute('action').split('/').pop();
+                    fetch(this.getAttribute('action'), {
+                        method: 'DELETE'
+                    })
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('Failed to delete todo');
+                        }
+                        window.location.reload();
+                    })
+                    .catch(error => {
+                        console.error('Error deleting todo: ', error);
+                        alert('Failed to delete todo');
+                    });
+                }
+            });
+        });
+    </script>
+    </body>
+    </html>
