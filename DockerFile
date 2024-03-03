@@ -1,0 +1,19 @@
+# Resmi Node.js imajını kullan
+FROM node:14
+
+# Docker içinde çalıştırılacak dizini belirt
+WORKDIR /usr/src/app
+
+# Gerekli dosyaları kopyala
+COPY package*.json ./
+
+# Bağımlılıkları yükle
+RUN npm install
+
+# Tüm dosyaları kopyala
+COPY . .
+
+# Uygulamayı çalıştır
+CMD npm start
+
+EXPOSE 3000
