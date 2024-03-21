@@ -17,6 +17,7 @@ connection.connect((err) => {
         return;
     }
     console.log('Connected to MySQL database');
+    createTodosTable(); // Tablo oluşturuluyor
 });
 
 
@@ -79,6 +80,24 @@ app.delete('/todos/:id', (req, res) => {
         res.sendStatus(204);
     });
 });
+
+function createTodosTable() {
+    const query = `
+        CREATE TABLE IF NOT EXISTS todos (
+            id INT PRIMARY KEY AUTO_INCREMENT,
+            text VARCHAR(255),
+            completed BOOLEAN DEFAULT false
+        )
+    `;
+    connection.query(query, (err, result) => {
+        if (err) {
+            console.error('Error creating todos table in MySQL database: ', err);
+            return;
+        }
+        console.log('Todos table created successfully');
+    });
+}
+
 
 //sunucu dinlemek için
 app.listen(3000, function () {
