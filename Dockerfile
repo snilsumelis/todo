@@ -2,7 +2,7 @@
 FROM node:14
 
 # Docker içinde çalıştırılacak dizini belirt
-WORKDIR /usr/src/app
+WORKDIR .
 
 # Gerekli dosyaları kopyala
 COPY package*.json ./
@@ -14,6 +14,6 @@ RUN npm install
 COPY . .
 
 # Uygulamayı çalıştır
-CMD npm start
+CMD ["node", "index.js"]
 
 EXPOSE 3000

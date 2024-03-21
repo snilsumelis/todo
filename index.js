@@ -1,14 +1,15 @@
 const express = require('express');          // web sunucusu oluşturmak için
 const bodyParser = require('body-parser');    //HTTP isteklerini işlemek için 
 const ejs = require('ejs');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: 'root',
+    host: 'mysql',
+    user: 'todouser',
+    password: 'todopass',
     database: 'todo_list'
 });
+
 
 connection.connect((err) => {
     if (err) {
