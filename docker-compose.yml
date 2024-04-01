@@ -7,7 +7,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - MYSQL_HOST=mysql
+      - MYSQL_HOST=mysql-service.default.svc.cluster.local
       - MYSQL_ROOT_PASSWORD=root
       - MYSQL_USER=root
       - MYSQL_DATABASE=todo_list
