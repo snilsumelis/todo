@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodejs-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodejs-app
+  template:
+    metadata:
+      labels:
+        app: nodejs-app
+    spec:
+      containers:
+      - name: nodejs-app
+        image: snilsumelis/todo_app:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: MYSQL_DATABASE
+          value: todo_list
+        - name: MYSQL_DATABASE_HOST
+          value: mysql-service.default.svc.cluster.local
+        - name: MYSQL_DATABASE_PASSWORD
+          value: todopass
+        - name: MYSQL_USER
+          value: todouser
+        - name: MYSQL_ROOT_PASSWORD
+          value: todopass
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodejs-service
+spec:
+  selector:
+    app: nodejs-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 3000
