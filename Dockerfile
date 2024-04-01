@@ -2,7 +2,7 @@
 FROM node:14
 
 # Docker içinde çalıştırılacak dizini belirt
-WORKDIR .
+WORKDIR /home
 
 # Gerekli dosyaları kopyala
 COPY package*.json ./

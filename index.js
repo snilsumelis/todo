@@ -4,7 +4,7 @@ const ejs = require('ejs');
 const mysql = require('mysql2');
 
 const connection = mysql.createConnection({
-    host: 'mysql.default.svc.cluster.local',
+    host: 'mysql-service.default.svc.cluster.local',
     user: 'todouser',
     password: 'todopass',
     database: 'todo_list'
