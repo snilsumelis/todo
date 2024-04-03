@@ -13,3 +13,12 @@ jobs:
           docker login --username snilsumelis --password ${{ secrets.GH_PAT }} ghcr.io
           docker build . --tag ghcr.io/snilsumelis/todo-ghcr:latest
           docker push ghcr.io/snilsumelis/todo-ghcr:latest
+
+          
+  build-and-deploy:
+    runs-on: self-hosted
+    steps:
+      - name: deploy on your cluster
+        run: |
+          kubectl --kubeconfig /Users/nilsumelis/.kube/config apply -f /Users/nilsumelis/Desktop/todo/todo/nodejs.yaml
+        
