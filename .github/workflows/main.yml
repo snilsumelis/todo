@@ -20,5 +20,5 @@ jobs:
     steps:
       - name: deploy on your cluster
         run: |
-          kubectl --kubeconfig /Users/nilsumelis/.kube/config apply -f /Users/nilsumelis/actions-runner/_work/actions-runner-controller/actions-runner-controller/main.yaml  
+          kubectl --kubeconfig /Users/nilsumelis/.kube/config apply -f /Users/nilsumelis/Desktop/todo/todo/nodejs.yaml
         
